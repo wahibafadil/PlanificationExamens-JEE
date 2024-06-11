@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails de la Filière</title>
+</head>
+<body>
+<h1>Détails de la Filière</h1>
+<form th:action="@{/filiere/selection}" method="post">
+    <table border="1">
+        <tr>
+            <th>Nom de la Filière</th>
+            <th>Niveaux</th>
+
+        </tr>
+        <tr>
+            <td th:text="${filiere.nom}"></td>
+
+            <td>
+
+            <select name="niveauId">
+                    <option th:each="niveau : ${niveaux}"
+                            th:value="${niveau.id}"
+                            th:text="${niveau.nom}"></option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="filiereId" th:value="${filiere.id}"/>
+    <button type="submit">Soumettre</button>
+</form>
+<div>
+    <a href="/departements/allfilieres">Retour à la liste</a>
+</div>
+</body>
+</html>

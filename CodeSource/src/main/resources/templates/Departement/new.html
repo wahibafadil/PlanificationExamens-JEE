@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Departement</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/examens/new">Gestion des Examens</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/examens/all}">Afficher les Examens</a></li>
+                    <li><a th:href="@{/examens/new}">Créer un Nouvel Examen</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Personnel/new">Gestion du Personnel</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Personnel/allE}">Liste des enseignants</a></li>
+                    <li><a th:href="@{/Personnel/allP}">Liste des Personnels Administratifs</a></li>
+                    <li><a th:href="@{/Personnel/new}">Créer un Nouveau Personnel</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/EP/new">Gestion des Éléments Pédagogiques</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Module/all}">Afficher les Modules</a></li>
+                    <li><a th:href="@{/Module/new}">Créer un Nouveau Module</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Groupe/new">Gestion des Groupes</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Groupe/all}">Afficher les Groupes</a></li>
+                    <li><a th:href="@{/Groupe/new}">Créer un Nouveau Groupe</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Departement/new">Gestion des Départements</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Departement/all}">Afficher les Départements</a></li>
+                    <li><a th:href="@{/Departement/new}">Créer un Nouveau Département</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Create a new Departement</h1>
+        <form th:action="@{/departements/save}" th:object="${departement}" method="post">
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" th:field="*{nom}" />
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <input type="text" id="description" th:field="*{description}" />
+            </div>
+            <div>
+                <label for="abreviation">Abreviation:</label>
+                <input type="text" id="abreviation" th:field="*{abreviation}" />
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Créer un Niveau</title>
+</head>
+<body>
+<h1>Créer un Nouveau Niveau</h1>
+<form th:action="@{/niveau/save}" th:object="${niveau}" method="post">
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" th:field="*{nom}" />
+    </div>
+    <div>
+        <label for="filiere">Filière:</label>
+        <select id="filiere" th:field="*{filiere}">
+            <option th:each="filiere : ${filieres}" th:value="${filiere.id}" th:text="${filiere.nom}"></option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Créer</button>
+    </div>
+</form>
+</body>
+</html>

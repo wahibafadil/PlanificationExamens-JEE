@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Filières</title>
+</head>
+<body>
+<h1>Liste des Filières</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Date d'ajout</th>
+        <th>Abreviation</th>
+        <th>Département</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="filiere : ${filieres}">
+        <td th:text="${filiere.nom}">Nom</td>
+        <td th:text="${filiere.description}">Description</td>
+        <td th:text="${#dates.format(filiere.date_ajout, 'yyyy-MM-dd')}">Date d'ajout</td>
+        <td th:text="${filiere.abreviation}">Abreviation</td>
+        <td th:text="${filiere.departement.nom}">Département</td>
+        <td th:text="${filiere.elementPedagogiques.get(0).nom}">Département</td>
+
+        <td>
+            <a th:href="@{/filiere/{id}(id=${filiere.id})}">Détails</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

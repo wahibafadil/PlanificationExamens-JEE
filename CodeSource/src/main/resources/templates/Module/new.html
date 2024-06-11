@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouveau Module</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <script>
+        function toggleNiveaux(filiereId) {
+            var niveauxDiv = document.getElementById('niveaux_' + filiereId);
+            var checkbox = document.getElementById('filiere_' + filiereId);
+            if (checkbox.checked) {
+                niveauxDiv.style.display = 'block';
+            } else {
+                niveauxDiv.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/examens/new">Gestion des Examens</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/examens/all}">Afficher les Examens</a></li>
+                    <li><a th:href="@{/examens/new}">Créer un Nouvel Examen</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Personnel/new">Gestion du Personnel</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Personnel/allE}">Liste des enseignants</a></li>
+                    <li><a th:href="@{/Personnel/allP}">Liste des Personnels Administratifs</a></li>
+                    <li><a th:href="@{/Personnel/new}">Créer un Nouveau Personnel</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/EP/new">Gestion des Éléments Pédagogiques</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Module/all}">Afficher les Modules</a></li>
+                    <li><a th:href="@{/Module/new}">Créer un Nouveau Module</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Groupe/new">Gestion des Groupes</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Groupe/all}">Afficher les Groupes</a></li>
+                    <li><a th:href="@{/Groupe/new}">Créer un Nouveau Groupe</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Departement/all">Gestion des Départements</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Departement/all}">Afficher les Départements</a></li>
+                    <li><a th:href="@{/Departement/new}">Créer un Nouveau Département</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Nouveau Module</h1>
+        <form th:action="@{/EP/save}" th:object="${module}" method="post">
+            <div>
+                <label>Nom du module:</label>
+                <input type="text" th:field="*{nom}" />
+            </div>
+
+            <div>
+                <label>Filières:</label>
+                <div th:each="filiereEntry : ${filieresWithNiveaux}">
+                    <input type="checkbox" th:id="${'filiere_' + filiereEntry.key.id}"
+                           th:name="filiereIds" th:value="${filiereEntry.key.id}"
+                           th:onchange="'toggleNiveaux(' + ${filiereEntry.key.id} + ')'" />
+                    <label th:for="${'filiere_' + filiereEntry.key.id}" th:text="${filiereEntry.key.nom}"></label><br/>
+
+                    <div th:id="${'niveaux_' + filiereEntry.key.id}" style="display: none; margin-left: 20px;">
+                        <label>Niveaux:</label>
+                        <div th:each="niveau : ${filiereEntry.value}">
+                            <input type="checkbox" th:id="${'niveau_' + niveau.id}" th:name="niveauIds" th:value="${niveau.id}" />
+                            <label th:for="${'niveau_' + niveau.id}" th:text="${niveau.nom}"></label><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

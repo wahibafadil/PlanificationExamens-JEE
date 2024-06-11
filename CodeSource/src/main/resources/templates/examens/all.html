@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des examens</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/examens/new">Gestion des Examens</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/examens/all}">Afficher les Examens</a></li>
+                    <li><a th:href="@{/examens/new}">Créer un Nouvel Examen</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Personnel/new">Gestion du Personnel</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Personnel/allE}">Liste des enseignants</a></li>
+                    <li><a th:href="@{/Personnel/allP}">Liste des Personnels Administratifs</a></li>
+                    <li><a th:href="@{/Personnel/new}">Créer un Nouveau Personnel</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/EP/new">Gestion des Éléments Pédagogiques</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Module/all}">Afficher les Modules</a></li>
+                    <li><a th:href="@{/Module/new}">Créer un Nouveau Module</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Groupe/new">Gestion des Groupes</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Groupe/all}">Afficher les Groupes</a></li>
+                    <li><a th:href="@{/Groupe/new}">Créer un Nouveau Groupe</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Gestion des Départements</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Departement/all}">Afficher les Départements</a></li>
+                    <li><a th:href="@{/Departement/new}">Créer un Nouveau Département</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Liste des examens</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Semestre</th>
+                    <th>Session</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Heure de début</th>
+                    <th>Durée prévue</th>
+                    <th>Durée réelle</th>
+                    <th>Année universitaire</th>
+                    <th>Coordonnateur</th>
+                    <th>Module</th>
+                    <th>Salle</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="examen : ${examens}">
+                    <td th:text="${examen.semestre}"></td>
+                    <td th:text="${examen.session}"></td>
+                    <td th:text="${examen.type}"></td>
+                    <td th:text="${examen.date}"></td>
+                    <td th:text="${examen.heureDebut}"></td>
+                    <td th:text="${examen.dureePrevue}"></td>
+                    <td th:text="${examen.dureeReelle}"></td>
+                    <td th:text="${examen.anneeUniversitaire}"></td>
+                    <td th:text="${examen.coordonnateur.nom} + ' ' + ${examen.coordonnateur.prenom}"></td>
+                    <td th:text="${examen.module.nom}"></td>
+                    <td th:text="${examen.salle != null ? examen.salle.nom : 'Aucune salle attribuée'}"></td>
+                    <td>
+                        <a th:href="@{/examens/edit/{id}(id=${examen.id})}">Modifier</a>
+                        <a th:href="@{/examens/delete/{id}(id=${examen.id})}">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/examens/new}">Créer un nouvel Examen</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Créer une nouvelle filière</title>
+</head>
+<body>
+<h2>Créer une nouvelle filière</h2>
+<form action="#" th:action="@{/filiere/save}" th:object="${filiere}" method="post">
+    <p>Nom: <input type="text" th:field="*{nom}" /></p>
+    <p>Description: <input type="text" th:field="*{description}" /></p>
+    <p>Abréviation: <input type="text" th:field="*{abreviation}" /></p>
+    <p>Département:
+        <select th:field="*{departement}">
+            <option value="">Sélectionnez un département</option>
+            <option th:each="dept : ${departements}" th:value="${dept.id}" th:text="${dept.nom}"></option>
+        </select>
+    </p>
+    <p><input type="submit" value="Créer" /></p>
+</form>
+</body>
+</html>

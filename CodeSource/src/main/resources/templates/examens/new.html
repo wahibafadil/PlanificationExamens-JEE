@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un Examen</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/examens/all">Gestion des Examens</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/examens/all}">Afficher les Examens</a></li>
+                    <li><a th:href="@{/examens/new}">Créer un Nouvel Examen</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Personnel/new">Gestion du Personnel</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Personnel/allE}">Liste des enseignants</a></li>
+                    <li><a th:href="@{/Personnel/allP}">Liste des Personnels Administratifs</a></li>
+                    <li><a th:href="@{/Personnel/new}">Créer un Nouveau Personnel</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/EP/new">Gestion des Éléments Pédagogiques</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Module/all}">Afficher les Modules</a></li>
+                    <li><a th:href="@{/Module/new}">Créer un Nouveau Module</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Groupe/new">Gestion des Groupes</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Groupe/all}">Afficher les Groupes</a></li>
+                    <li><a th:href="@{/Groupe/new}">Créer un Nouveau Groupe</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Departement/new">Gestion des Départements</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Departement/all}">Afficher les Départements</a></li>
+                    <li><a th:href="@{/Departement/new}">Créer un Nouveau Département</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Créer un Examen</h2>
+        <form th:action="@{/examens/save}" th:object="${examen}" method="post" enctype="multipart/form-data">
+            <label>Semestre:</label>
+            <input type="text" th:field="*{semestre}" /><br/>
+
+            <label>Session:</label>
+            <input type="text" th:field="*{session}" /><br/>
+
+            <label>Type:</label>
+            <input type="text" th:field="*{type}" /><br/>
+
+            <label>Date:</label>
+            <input type="text" th:field="*{date}" placeholder="yyyy-mm-dd" /><br/>
+
+            <label>Heure de début:</label>
+            <input type="text" th:field="*{heureDebut}" placeholder="HH:mm" /><br/>
+
+            <label>Durée prévue:</label>
+            <input type="number" th:field="*{dureePrevue}" /><br/>
+
+            <label>Durée réelle:</label>
+            <input type="number" th:field="*{dureeReelle}" /><br/>
+
+            <label>Année universitaire:</label>
+            <input type="text" th:field="*{anneeUniversitaire}" /><br/>
+
+            <label>Coordonnateur:</label>
+            <select th:field="*{coordonnateur.id}">
+                <option th:each="enseignant : ${enseignants}" th:value="${enseignant.id}" th:text="${enseignant.nom} + ' ' + ${enseignant.prenom}"></option>
+            </select><br/>
+
+            <label>Module:</label>
+            <select th:field="*{module.id}">
+                <option th:each="module : ${modules}" th:value="${module.id}" th:text="${module.nom}"></option>
+            </select><br/>
+
+            <label>Salle:</label>
+            <select th:field="*{salle.id}">
+                <option th:each="salle : ${salles}" th:value="${salle.id}" th:text="${salle.nom}"></option>
+            </select><br/>
+
+            <button type="submit">Créer</button>
+        </form>
+        <a th:href="@{/examens/all}">Retour à la liste des examens</a>
+    </div>
+</body>
+</html>

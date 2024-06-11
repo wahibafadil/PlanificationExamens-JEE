@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Détails de la Filière</title>
+</head>
+<body>
+<h1>Détails de la Filière</h1>
+<div th:border="1">
+  <label>Nom:</label>
+  <span th:text="${filiere.nom}"></span>
+</div>
+<div>
+  <label>Description:</label>
+  <span th:text="${filiere.description}"></span>
+</div>
+<div>
+  <label>Date d'ajout:</label>
+  <span th:text="${#dates.format(filiere.date_ajout, 'yyyy-MM-dd')}"></span>
+</div>
+<div>
+  <label>Abreviation:</label>
+  <span th:text="${filiere.abreviation}"></span>
+
+</div>
+<div>
+  <label>Département:</label>
+  <span th:text="${filiere.departement.nom}"></span>
+
+</div>
+<div>
+  <a th:href="@{/filiere/{id}/niveaux(id=${filiere.id})}">Voir les niveaux</a>
+</div>
+<div>
+  <a href="/departements/allfilieres">Retour à la liste</a>
+</div>
+</body>
+</html>

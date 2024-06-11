@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Creation</title>
+    <!-- Ajoutez vos liens CSS ici -->
+</head>
+<body>
+
+<!-- Include de l'en-tête de l'administrateur -->
+<div th:replace="fragments/adminHeader :: header"></div>
+
+<div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Include du menu -->
+            <div th:replace="fragments/menu :: menu"></div>
+        </div>
+    </nav>
+
+    <div>
+        <h3>List of Persons</h3>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">CIN</th>
+                    <th scope="col">Nom & Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${personList}">
+                    <td th:text="${p.cin}"></td>
+                    <td th:text="${p.nom} + ' / ' + ${p.prenom}"></td>
+                    <td th:text="${p.email}"></td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a th:href="@{/admin/createAccountForm/{idPerson}(idPerson=${p.idPersonne})}">Create Account</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include du pied de page de l'administrateur -->
+    <div th:replace="fragments/adminfooter :: footer"></div>
+</div>
+
+</body>
+</html>

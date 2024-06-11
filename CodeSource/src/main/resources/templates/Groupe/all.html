@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Groupes</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="/examens/all">Gestion des Examens</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/examens/all}">Afficher les Examens</a></li>
+                    <li><a th:href="@{/examens/new}">Créer un Nouvel Examen</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Personnel/allE">Gestion du Personnel</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Personnel/allE}">Liste des enseignants</a></li>
+                    <li><a th:href="@{/Personnel/allP}">Liste des Personnels Administratifs</a></li>
+                    <li><a th:href="@{/Personnel/new}">Créer un Nouveau Personnel</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/EP/new">Gestion des Éléments Pédagogiques</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Module/all}">Afficher les Modules</a></li>
+                    <li><a th:href="@{/Module/new}">Créer un Nouveau Module</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/Groupe/all">Gestion des Groupes</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Groupe/all}">Afficher les Groupes</a></li>
+                    <li><a th:href="@{/Groupe/new}">Créer un Nouveau Groupe</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="/departements/all">Gestion des Départements</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/Departement/all}">Afficher les Départements</a></li>
+                    <li><a th:href="@{/Departement/new}">Créer un Nouveau Département</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Liste des Groupes</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom du Groupe</th>
+                    <th>Enseignants</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="groupe : ${groupes}">
+                    <td th:text="${groupe.idGroupe}"></td>
+                    <td th:text="${groupe.nomGroupe}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="enseignant : ${groupe.enseignants}" th:text="${enseignant.nom}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/Groupe/new}">Créer un nouveau Groupe</a>
+    </div>
+</body>
+</html>

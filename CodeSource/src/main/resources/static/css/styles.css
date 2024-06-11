@@ -1,0 +1,172 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    float: left;
+    display: inline;
+    position: relative;
+}
+
+.navbar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    background-color: #ff4c4c;
+}
+
+.navbar ul li .submenu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.navbar ul li:hover .submenu {
+    display: block;
+}
+
+.navbar ul li .submenu li {
+    float: none;
+}
+
+.navbar ul li .submenu li a {
+    padding: 12px 16px;
+}
+
+.navbar ul li .submenu li a:hover {
+    background-color: #ff4c4c;
+}
+
+/* Styles de formulaire */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #ff4c4c;
+}
+
+select[multiple] {
+    height: auto;
+}
+
+input[type="file"] {
+    padding: 3px;
+    background-color: #f9f9f9;
+}
+
+button {
+    background-color: #ff4c4c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e04343;
+}
+
+#enseignantFields {
+    background-color: #e9f6f5;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+/* Styles spécifiques pour les tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table a {
+    color: #ff4c4c;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
